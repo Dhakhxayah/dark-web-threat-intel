@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: dark-web-threat-intel-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt && python -m spacy download en_core_web_sm
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DEBUG
+        value: false
+      - key: DATA_RAW_PATH
+        value: data/raw
+      - key: DATA_PROCESSED_PATH
+        value: data/processed
+      - key: MODEL_ARTIFACTS_PATH
+        value: data/models
+      - key: CORS_ORIGINS
+        value: https://your-vercel-app.vercel.app
+```
+
+---
+
+Create `backend/.python-version`:
+```
+3.11
