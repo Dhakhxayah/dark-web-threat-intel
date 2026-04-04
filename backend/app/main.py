@@ -15,19 +15,22 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origins,
+    allow_origins=settings.get_origins(),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+
 @app.on_event("startup")
 async def startup_event():
     logger.info("Starting " + settings.app_name + " v" + settings.app_version)
 
+
 @app.get("/health")
 async def health_check():
     return {"status": "ok", "version": settings.app_version}
+
 
 app.include_router(alerts.router,    prefix="/api/v1/alerts",    tags=["alerts"])
 app.include_router(topics.router,    prefix="/api/v1/topics",    tags=["topics"])

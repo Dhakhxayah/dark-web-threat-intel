@@ -40,8 +40,9 @@ KEYWORD_LABEL_MAP = {
 
 
 def assign_label_from_keywords(keywords_str):
-    if not keywords_str or keywords_str.strip() == "":
+    if not keywords_str or str(keywords_str).strip() == "" or str(keywords_str) == "nan":
         return "unknown"
+    keywords_str = str(keywords_str)
     keywords = keywords_str.split(",")
     for keyword in keywords:
         keyword = keyword.strip()

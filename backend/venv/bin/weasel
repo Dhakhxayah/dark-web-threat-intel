@@ -1,4 +1,4 @@
-#!/workspaces/dark-web-threat-intel/backend/venv/bin/python
+#!/Users/admin/Desktop/dark-web-threat-intel/backend/venv/bin/python3
 import sys
 from weasel.cli import app
 if __name__ == '__main__':
