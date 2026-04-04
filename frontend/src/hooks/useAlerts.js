@@ -11,14 +11,8 @@ function useAlerts(limit, minRisk, threatType) {
   useEffect(() => {
     setLoading(true)
     fetchAlerts(limit, minRisk, threatType)
-      .then((res) => {
-        setAlerts(res.data.alerts || [])
-        setLoading(false)
-      })
-      .catch((err) => {
-        setError(err.message)
-        setLoading(false)
-      })
+      .then((res) => { setAlerts(res.data.alerts || []); setLoading(false) })
+      .catch((err) => { setError(err.message); setLoading(false) })
   }, [limit, minRisk, threatType])
 
   return alerts

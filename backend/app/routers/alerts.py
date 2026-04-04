@@ -50,20 +50,21 @@ def build_alert_from_row(row):
 
 
 @router.get("/")
-def get_alerts(limit = 50, min_risk = 0.0, threat_type = None):
+def get_alerts(limit=50, min_risk=0.0, threat_type=None):
     try:
         data_path = os.path.join(settings.data_processed_path, "clean_posts.csv")
         df = pd.read_csv(data_path)
         df = df.dropna(subset=["cleaned_text"])
 
-        if threat_type:
-            df = df[df["threat_type"] == threat_type]
-
         if "risk_score" in df.columns:
-            df = df[df["risk_score"] >= min_risk]
+            df["risk_score"] = pd.to_numeric(df["risk_score"], errors="coerce").fillna(0.0)
+            df = df[df["risk_score"] >= float(min_risk)]
             df = df.sort_values("risk_score", ascending=False)
 
-        df = df.head(limit)
+        if threat_type and "threat_type" in df.columns:
+            df = df[df["threat_type"].astype(str) == str(threat_type)]
+
+        df = df.head(int(limit))
         alerts = [build_alert_from_row(row) for _, row in df.iterrows()]
         return {"total": len(alerts), "alerts": alerts}
 

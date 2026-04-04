@@ -12,7 +12,6 @@ function useGraph() {
     fetchFullGraph()
       .then((res) => setGraph(res.data.graph))
       .catch((err) => console.error("Graph error:", err))
-
     fetchGraphStats()
       .then((res) => setGraphStats(res.data))
       .catch((err) => console.error("Graph stats error:", err))

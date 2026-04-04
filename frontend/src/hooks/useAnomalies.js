@@ -12,7 +12,6 @@ function useAnomalies() {
     fetchAnomalyTimeline()
       .then((res) => setAnomalies(res.data.timeline || []))
       .catch((err) => console.error("Anomaly timeline error:", err))
-
     fetchAnomalyStats()
       .then((res) => setAnomalyStats(res.data))
       .catch((err) => console.error("Anomaly stats error:", err))
