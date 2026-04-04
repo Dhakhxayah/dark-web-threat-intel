@@ -3,7 +3,6 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from app.models.threat import ThreatAlert, TopicSummary, GraphNode, GraphEdge
-from datetime import datetime
 
 
 def test_threat_alert_to_dict():
@@ -14,7 +13,7 @@ def test_threat_alert_to_dict():
         risk_score=0.8,
         is_anomaly=True,
         source_forum="breach_forum",
-        timestamp=datetime(2024, 1, 1),
+        timestamp="2024-01-01",
         keywords=["ransomware"],
     )
     d = alert.to_dict()
@@ -70,7 +69,7 @@ def test_default_risk_score():
         risk_score=0.0,
         is_anomaly=False,
         source_forum="unknown",
-        timestamp=datetime(2024, 1, 1),
+        timestamp="2024-01-01",
         keywords=[],
     )
     assert alert.risk_score == 0.0
