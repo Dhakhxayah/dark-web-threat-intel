@@ -124,6 +124,8 @@ def run_classification(cleaned_data_path, model_output_dir):
     clf, vectorizer = train_classifier(df)
     save_classifier(clf, vectorizer, model_output_dir)
     df["threat_type"] = clf.predict(vectorizer.transform(df["cleaned_text"]))
+    df.to_csv(cleaned_data_path, index=False)
+    logger.info("Saved threat_type back to " + cleaned_data_path)
     return clf, vectorizer, df
 
 

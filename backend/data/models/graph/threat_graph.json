@@ -159,7 +159,7 @@
     {
       "source": "darknetlive",
       "target": "exploit",
-      "weight": 35
+      "weight": 37
     },
     {
       "source": "darknetlive",
@@ -184,7 +184,7 @@
     {
       "source": "darknetlive",
       "target": "rat",
-      "weight": 25
+      "weight": 26
     },
     {
       "source": "darknetlive",
@@ -429,7 +429,7 @@
     {
       "source": "hackforums",
       "target": "exploit",
-      "weight": 43
+      "weight": 42
     },
     {
       "source": "hackforums",
@@ -484,12 +484,12 @@
     {
       "source": "exploit",
       "target": "exploit_in",
-      "weight": 37
+      "weight": 36
     },
     {
       "source": "exploit",
       "target": "raidforums",
-      "weight": 43
+      "weight": 44
     },
     {
       "source": "vulnerability",
@@ -524,7 +524,7 @@
     {
       "source": "stealer",
       "target": "raidforums",
-      "weight": 35
+      "weight": 34
     },
     {
       "source": "stealer",

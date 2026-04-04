@@ -72,11 +72,12 @@ def extract_keywords(text):
 
 
 def compute_risk_score(keywords_found, is_anomaly=False):
-    base_score = len(keywords_found) / len(THREAT_KEYWORDS)
+    if not keywords_found:
+        return 0.0
+    base_score = min(len(keywords_found) / 5, 1.0)
     if is_anomaly:
-        base_score = min(base_score + 0.2, 1.0)
+        base_score = min(base_score + 0.25, 1.0)
     return round(base_score, 4)
-
 
 def preprocess_dataframe(df, text_column):
     logger.info("Starting preprocessing pipeline...")
