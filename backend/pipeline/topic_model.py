@@ -99,9 +99,10 @@ def run_topic_modeling(cleaned_data_path, model_output_dir):
     lda_model = train_lda(corpus, dictionary)
     df["dominant_topic"] = assign_topics_to_docs(lda_model, corpus)
     save_model(lda_model, dictionary, model_output_dir)
+    df.to_csv(cleaned_data_path, index=False)
+    logger.info("Saved dominant_topic back to " + cleaned_data_path)
     summaries = get_topic_summary(lda_model)
     return lda_model, df, summaries
-
 
 if __name__ == "__main__":
     run_topic_modeling(

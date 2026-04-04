@@ -78,8 +78,9 @@ def run_anomaly_detection(cleaned_data_path, model_output_dir):
     df = df.dropna(subset=["cleaned_text"])
     iso_forest, vectorizer, df = train_anomaly_detector(df)
     save_anomaly_model(iso_forest, vectorizer, model_output_dir)
+    df.to_csv(cleaned_data_path, index=False)
+    logger.info("Saved is_anomaly and anomaly_score back to " + cleaned_data_path)
     top_anomalies = get_top_anomalies(df)
-    logger.info("Top anomalous posts saved")
     return iso_forest, df, top_anomalies
 
 
