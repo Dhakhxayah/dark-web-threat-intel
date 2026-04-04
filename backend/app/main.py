@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import get_settings
 from app.core.logger import get_logger
-from app.routers import alerts, topics, anomalies, graph
+from app.routers import alerts, topics, anomalies, graph, stats
 
 logger = get_logger(__name__)
 settings = get_settings()
@@ -36,3 +36,4 @@ app.include_router(alerts.router,    prefix="/api/v1/alerts",    tags=["alerts"]
 app.include_router(topics.router,    prefix="/api/v1/topics",    tags=["topics"])
 app.include_router(anomalies.router, prefix="/api/v1/anomalies", tags=["anomalies"])
 app.include_router(graph.router,     prefix="/api/v1/graph",     tags=["graph"])
+app.include_router(stats.router, prefix="/api/v1/stats", tags=["stats"])

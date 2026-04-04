@@ -42,6 +42,44 @@ def filter_english(df, text_column):
     logger.info("Kept " + str(len(english_df)) + " English posts out of " + str(len(df)))
     return english_df
 
+def preprocess_dataframe(df, text_column):
+    logger.info("Starting preprocessing pipeline...")
+
+    df = filter_english(df, text_column)
+
+    # ADD THIS — remove duplicates before processing
+    before = len(df)
+    df = df.drop_duplicates(subset=[text_column])
+    logger.info("Removed " + str(before - len(df)) + " duplicate posts. Remaining: " + str(len(df)))
+
+    logger.info("Cleaning text...")
+    df["cleaned_text"] = df[text_column].apply(clean_text)
+
+    logger.info("Removing stopwords...")
+    df["cleaned_text"] = df["cleaned_text"].apply(remove_stopwords)
+
+    logger.info("Lemmatizing...")
+    df["cleaned_text"] = df["cleaned_text"].apply(lemmatize)
+
+    # Remove duplicates again after cleaning — different raw text can become same after cleaning
+    before = len(df)
+    df = df.drop_duplicates(subset=["cleaned_text"])
+    logger.info("Removed " + str(before - len(df)) + " more duplicates after cleaning. Remaining: " + str(len(df)))
+
+    logger.info("Extracting threat keywords...")
+    df["keywords"] = df["cleaned_text"].apply(extract_keywords)
+    df["keywords"] = df["keywords"].apply(lambda k: ",".join(k))
+
+    logger.info("Computing base risk scores...")
+    df["risk_score"] = df["keywords"].apply(
+        lambda k: compute_risk_score(k.split(",") if k else [])
+    )
+
+    df = df.dropna(subset=["cleaned_text"])
+    df = df[df["cleaned_text"].str.strip() != ""]
+
+    logger.info("Preprocessing done. Final rows: " + str(len(df)))
+    return df
 
 def clean_text(text):
     text = str(text).lower()

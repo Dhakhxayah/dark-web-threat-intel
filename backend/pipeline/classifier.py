@@ -1,4 +1,5 @@
 import os
+import json
 import pickle
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
@@ -85,8 +86,41 @@ def train_classifier(df):
     clf.fit(X_train, y_train)
 
     y_pred = clf.predict(X_test)
-    report = classification_report(y_test, y_pred)
-    logger.info("Classification Report:\n" + report)
+    report_dict = classification_report(y_test, y_pred, output_dict=True)
+
+    logger.info("Classification Report:\n" + classification_report(y_test, y_pred))
+
+    classes = []
+    for label, metrics in report_dict.items():
+        if label in ["accuracy", "macro avg", "weighted avg"]:
+            continue
+        classes.append({
+            "name": label,
+            "precision": round(metrics["precision"], 4),
+            "recall": round(metrics["recall"], 4),
+            "f1": round(metrics["f1-score"], 4),
+            "support": int(metrics["support"]),
+        })
+
+    result = {
+        "accuracy": round(report_dict["accuracy"], 4),
+        "macro_avg": {
+            "precision": round(report_dict["macro avg"]["precision"], 4),
+            "recall": round(report_dict["macro avg"]["recall"], 4),
+            "f1": round(report_dict["macro avg"]["f1-score"], 4),
+        },
+        "weighted_avg": {
+            "precision": round(report_dict["weighted avg"]["precision"], 4),
+            "recall": round(report_dict["weighted avg"]["recall"], 4),
+            "f1": round(report_dict["weighted avg"]["f1-score"], 4),
+        },
+        "classes": classes,
+    }
+
+    os.makedirs("data/models/classifier", exist_ok=True)
+    with open("data/models/classifier/classifier_report.json", "w") as f:
+        json.dump(result, f, indent=2)
+    logger.info("Saved classifier report to data/models/classifier/classifier_report.json")
 
     return clf, vectorizer
 
@@ -128,6 +162,55 @@ def run_classification(cleaned_data_path, model_output_dir):
     logger.info("Saved threat_type back to " + cleaned_data_path)
     return clf, vectorizer, df
 
+
+def save_classification_report(clf, vectorizer, df, output_dir):
+    from sklearn.metrics import classification_report
+    from sklearn.model_selection import train_test_split
+
+    X = vectorizer.transform(df["cleaned_text"])
+    y = df["label"]
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
+
+    y_pred = clf.predict(X_test)
+
+    report = classification_report(y_test, y_pred, output_dict=True)
+
+    classes = []
+    for label, metrics in report.items():
+        if label in ["accuracy", "macro avg", "weighted avg"]:
+            continue
+        classes.append({
+            "name": label,
+            "precision": round(metrics["precision"], 4),
+            "recall": round(metrics["recall"], 4),
+            "f1": round(metrics["f1-score"], 4),
+            "support": int(metrics["support"]),
+        })
+
+    result = {
+        "accuracy": round(report["accuracy"], 4),
+        "macro_avg": {
+            "precision": round(report["macro avg"]["precision"], 4),
+            "recall": round(report["macro avg"]["recall"], 4),
+            "f1": round(report["macro avg"]["f1-score"], 4),
+        },
+        "weighted_avg": {
+            "precision": round(report["weighted avg"]["precision"], 4),
+            "recall": round(report["weighted avg"]["recall"], 4),
+            "f1": round(report["weighted avg"]["f1-score"], 4),
+        },
+        "classes": classes,
+    }
+
+    os.makedirs(output_dir, exist_ok=True)
+    output_path = os.path.join(output_dir, "classifier_report.json")
+    with open(output_path, "w") as f:
+        json.dump(result, f, indent=2)
+    logger.info("Saved classification report to " + output_path)
+    return result
 
 if __name__ == "__main__":
     run_classification(

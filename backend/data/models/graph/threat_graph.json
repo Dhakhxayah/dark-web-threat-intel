@@ -1,88 +1,22 @@
 {
   "nodes": [
     {
-      "id": "darknetlive",
-      "label": "darknetlive",
-      "node_type": "actor",
-      "degree": 19
-    },
-    {
-      "id": "ransomware",
-      "label": "ransomware",
-      "node_type": "keyword",
-      "degree": 5
-    },
-    {
-      "id": "ransom",
-      "label": "ransom",
-      "node_type": "keyword",
-      "degree": 5
-    },
-    {
       "id": "breachforums",
       "label": "breachforums",
       "node_type": "actor",
-      "degree": 19
-    },
-    {
-      "id": "leak",
-      "label": "leak",
-      "node_type": "keyword",
-      "degree": 5
-    },
-    {
-      "id": "hackforums",
-      "label": "hackforums",
-      "node_type": "actor",
-      "degree": 19
-    },
-    {
-      "id": "bitcoin",
-      "label": "bitcoin",
-      "node_type": "keyword",
-      "degree": 5
+      "degree": 15
     },
     {
       "id": "monero",
       "label": "monero",
       "node_type": "keyword",
-      "degree": 5
+      "degree": 8
     },
     {
-      "id": "exploit",
-      "label": "exploit",
-      "node_type": "keyword",
-      "degree": 5
-    },
-    {
-      "id": "vulnerability",
-      "label": "vulnerability",
-      "node_type": "keyword",
-      "degree": 5
-    },
-    {
-      "id": "cve",
-      "label": "cve",
-      "node_type": "keyword",
-      "degree": 5
-    },
-    {
-      "id": "malware",
-      "label": "malware",
-      "node_type": "keyword",
-      "degree": 5
-    },
-    {
-      "id": "stealer",
-      "label": "stealer",
-      "node_type": "keyword",
-      "degree": 5
-    },
-    {
-      "id": "botnet",
-      "label": "botnet",
-      "node_type": "keyword",
-      "degree": 5
+      "id": "darknetlive",
+      "label": "darknetlive",
+      "node_type": "actor",
+      "degree": 15
     },
     {
       "id": "ddos",
@@ -91,20 +25,50 @@
       "degree": 5
     },
     {
-      "id": "exploit_in",
-      "label": "exploit_in",
-      "node_type": "actor",
-      "degree": 19
-    },
-    {
       "id": "raidforums",
       "label": "raidforums",
       "node_type": "actor",
-      "degree": 19
+      "degree": 15
     },
     {
-      "id": "rat",
-      "label": "rat",
+      "id": "credential_leak",
+      "label": "credential_leak",
+      "node_type": "attack_type",
+      "degree": 5
+    },
+    {
+      "id": "dump",
+      "label": "dump",
+      "node_type": "keyword",
+      "degree": 6
+    },
+    {
+      "id": "hackforums",
+      "label": "hackforums",
+      "node_type": "actor",
+      "degree": 15
+    },
+    {
+      "id": "malware_sale",
+      "label": "malware_sale",
+      "node_type": "attack_type",
+      "degree": 7
+    },
+    {
+      "id": "malware",
+      "label": "malware",
+      "node_type": "keyword",
+      "degree": 6
+    },
+    {
+      "id": "exploit_in",
+      "label": "exploit_in",
+      "node_type": "actor",
+      "degree": 15
+    },
+    {
+      "id": "botnet",
+      "label": "botnet",
       "node_type": "keyword",
       "degree": 5
     },
@@ -112,514 +76,529 @@
       "id": "keylogger",
       "label": "keylogger",
       "node_type": "keyword",
-      "degree": 5
+      "degree": 6
     },
     {
-      "id": "tor",
-      "label": "tor",
+      "id": "bitcoin",
+      "label": "bitcoin",
       "node_type": "keyword",
-      "degree": 5
+      "degree": 8
     },
     {
-      "id": "breach",
-      "label": "breach",
+      "id": "leak",
+      "label": "leak",
       "node_type": "keyword",
-      "degree": 5
-    },
-    {
-      "id": "dump",
-      "label": "dump",
-      "node_type": "keyword",
-      "degree": 5
-    },
-    {
-      "id": "trojan",
-      "label": "trojan",
-      "node_type": "keyword",
-      "degree": 5
+      "degree": 6
     },
     {
       "id": "credential",
       "label": "credential",
       "node_type": "keyword",
-      "degree": 5
+      "degree": 6
+    },
+    {
+      "id": "zero_day",
+      "label": "zero_day",
+      "node_type": "attack_type",
+      "degree": 1
+    },
+    {
+      "id": "exploit",
+      "label": "exploit",
+      "node_type": "keyword",
+      "degree": 6
+    },
+    {
+      "id": "ransomware",
+      "label": "ransomware",
+      "node_type": "attack_type",
+      "degree": 10
+    },
+    {
+      "id": "ransom",
+      "label": "ransom",
+      "node_type": "keyword",
+      "degree": 6
+    },
+    {
+      "id": "rat",
+      "label": "rat",
+      "node_type": "keyword",
+      "degree": 6
+    },
+    {
+      "id": "backdoor",
+      "label": "backdoor",
+      "node_type": "keyword",
+      "degree": 6
+    },
+    {
+      "id": "stealer",
+      "label": "stealer",
+      "node_type": "keyword",
+      "degree": 6
     }
   ],
   "edges": [
     {
+      "source": "breachforums",
+      "target": "monero",
+      "weight": 28
+    },
+    {
+      "source": "breachforums",
+      "target": "leak",
+      "weight": 25
+    },
+    {
+      "source": "breachforums",
+      "target": "keylogger",
+      "weight": 8
+    },
+    {
+      "source": "breachforums",
+      "target": "exploit",
+      "weight": 23
+    },
+    {
+      "source": "breachforums",
+      "target": "credential",
+      "weight": 21
+    },
+    {
+      "source": "breachforums",
+      "target": "ransomware",
+      "weight": 8
+    },
+    {
+      "source": "breachforums",
+      "target": "ransom",
+      "weight": 8
+    },
+    {
+      "source": "breachforums",
+      "target": "malware",
+      "weight": 24
+    },
+    {
+      "source": "breachforums",
+      "target": "bitcoin",
+      "weight": 42
+    },
+    {
+      "source": "breachforums",
+      "target": "dump",
+      "weight": 26
+    },
+    {
+      "source": "breachforums",
+      "target": "botnet",
+      "weight": 9
+    },
+    {
+      "source": "breachforums",
+      "target": "rat",
+      "weight": 10
+    },
+    {
+      "source": "breachforums",
+      "target": "stealer",
+      "weight": 4
+    },
+    {
+      "source": "breachforums",
+      "target": "backdoor",
+      "weight": 8
+    },
+    {
+      "source": "breachforums",
+      "target": "ddos",
+      "weight": 10
+    },
+    {
+      "source": "monero",
+      "target": "darknetlive",
+      "weight": 39
+    },
+    {
+      "source": "monero",
+      "target": "hackforums",
+      "weight": 38
+    },
+    {
+      "source": "monero",
+      "target": "malware_sale",
+      "weight": 13
+    },
+    {
+      "source": "monero",
+      "target": "raidforums",
+      "weight": 37
+    },
+    {
+      "source": "monero",
+      "target": "credential_leak",
+      "weight": 44
+    },
+    {
+      "source": "monero",
+      "target": "exploit_in",
+      "weight": 32
+    },
+    {
+      "source": "monero",
+      "target": "ransomware",
+      "weight": 1
+    },
+    {
+      "source": "darknetlive",
+      "target": "ddos",
+      "weight": 7
+    },
+    {
+      "source": "darknetlive",
+      "target": "malware",
+      "weight": 33
+    },
+    {
+      "source": "darknetlive",
+      "target": "exploit",
+      "weight": 17
+    },
+    {
+      "source": "darknetlive",
+      "target": "bitcoin",
+      "weight": 42
+    },
+    {
+      "source": "darknetlive",
+      "target": "dump",
+      "weight": 30
+    },
+    {
+      "source": "darknetlive",
+      "target": "leak",
+      "weight": 16
+    },
+    {
+      "source": "darknetlive",
+      "target": "credential",
+      "weight": 23
+    },
+    {
+      "source": "darknetlive",
+      "target": "backdoor",
+      "weight": 11
+    },
+    {
+      "source": "darknetlive",
+      "target": "rat",
+      "weight": 5
+    },
+    {
+      "source": "darknetlive",
+      "target": "stealer",
+      "weight": 9
+    },
+    {
+      "source": "darknetlive",
+      "target": "botnet",
+      "weight": 12
+    },
+    {
+      "source": "darknetlive",
+      "target": "keylogger",
+      "weight": 8
+    },
+    {
       "source": "darknetlive",
       "target": "ransomware",
-      "weight": 29
+      "weight": 5
     },
     {
       "source": "darknetlive",
       "target": "ransom",
-      "weight": 29
-    },
-    {
-      "source": "darknetlive",
-      "target": "exploit",
-      "weight": 37
-    },
-    {
-      "source": "darknetlive",
-      "target": "vulnerability",
-      "weight": 3
-    },
-    {
-      "source": "darknetlive",
-      "target": "malware",
-      "weight": 13
-    },
-    {
-      "source": "darknetlive",
-      "target": "stealer",
-      "weight": 26
-    },
-    {
-      "source": "darknetlive",
-      "target": "ddos",
-      "weight": 18
-    },
-    {
-      "source": "darknetlive",
-      "target": "rat",
-      "weight": 26
-    },
-    {
-      "source": "darknetlive",
-      "target": "tor",
-      "weight": 18
-    },
-    {
-      "source": "darknetlive",
-      "target": "botnet",
-      "weight": 15
-    },
-    {
-      "source": "darknetlive",
-      "target": "credential",
-      "weight": 28
-    },
-    {
-      "source": "darknetlive",
-      "target": "breach",
-      "weight": 9
-    },
-    {
-      "source": "darknetlive",
-      "target": "keylogger",
-      "weight": 19
-    },
-    {
-      "source": "darknetlive",
-      "target": "leak",
-      "weight": 28
-    },
-    {
-      "source": "darknetlive",
-      "target": "dump",
-      "weight": 24
-    },
-    {
-      "source": "darknetlive",
-      "target": "bitcoin",
-      "weight": 7
-    },
-    {
-      "source": "darknetlive",
-      "target": "monero",
-      "weight": 7
-    },
-    {
-      "source": "darknetlive",
-      "target": "cve",
-      "weight": 14
-    },
-    {
-      "source": "darknetlive",
-      "target": "trojan",
-      "weight": 9
-    },
-    {
-      "source": "ransomware",
-      "target": "hackforums",
-      "weight": 39
-    },
-    {
-      "source": "ransomware",
-      "target": "raidforums",
-      "weight": 39
-    },
-    {
-      "source": "ransomware",
-      "target": "breachforums",
-      "weight": 41
-    },
-    {
-      "source": "ransomware",
-      "target": "exploit_in",
-      "weight": 38
-    },
-    {
-      "source": "ransom",
-      "target": "hackforums",
-      "weight": 39
-    },
-    {
-      "source": "ransom",
-      "target": "raidforums",
-      "weight": 39
-    },
-    {
-      "source": "ransom",
-      "target": "breachforums",
-      "weight": 41
-    },
-    {
-      "source": "ransom",
-      "target": "exploit_in",
-      "weight": 38
-    },
-    {
-      "source": "breachforums",
-      "target": "leak",
-      "weight": 33
-    },
-    {
-      "source": "breachforums",
-      "target": "exploit",
-      "weight": 24
-    },
-    {
-      "source": "breachforums",
-      "target": "cve",
-      "weight": 7
-    },
-    {
-      "source": "breachforums",
-      "target": "tor",
-      "weight": 22
-    },
-    {
-      "source": "breachforums",
-      "target": "botnet",
-      "weight": 19
-    },
-    {
-      "source": "breachforums",
-      "target": "rat",
-      "weight": 30
-    },
-    {
-      "source": "breachforums",
-      "target": "dump",
-      "weight": 16
-    },
-    {
-      "source": "breachforums",
-      "target": "stealer",
-      "weight": 33
-    },
-    {
-      "source": "breachforums",
-      "target": "credential",
-      "weight": 21
-    },
-    {
-      "source": "breachforums",
-      "target": "breach",
-      "weight": 12
-    },
-    {
-      "source": "breachforums",
-      "target": "ddos",
-      "weight": 23
-    },
-    {
-      "source": "breachforums",
-      "target": "malware",
-      "weight": 26
-    },
-    {
-      "source": "breachforums",
-      "target": "keylogger",
-      "weight": 18
-    },
-    {
-      "source": "breachforums",
-      "target": "bitcoin",
-      "weight": 8
-    },
-    {
-      "source": "breachforums",
-      "target": "monero",
-      "weight": 8
-    },
-    {
-      "source": "breachforums",
-      "target": "trojan",
-      "weight": 12
-    },
-    {
-      "source": "breachforums",
-      "target": "vulnerability",
-      "weight": 8
-    },
-    {
-      "source": "leak",
-      "target": "exploit_in",
-      "weight": 31
-    },
-    {
-      "source": "leak",
-      "target": "raidforums",
-      "weight": 28
-    },
-    {
-      "source": "leak",
-      "target": "hackforums",
-      "weight": 39
-    },
-    {
-      "source": "hackforums",
-      "target": "bitcoin",
-      "weight": 11
-    },
-    {
-      "source": "hackforums",
-      "target": "monero",
-      "weight": 11
-    },
-    {
-      "source": "hackforums",
-      "target": "botnet",
-      "weight": 15
-    },
-    {
-      "source": "hackforums",
-      "target": "ddos",
-      "weight": 16
-    },
-    {
-      "source": "hackforums",
-      "target": "malware",
-      "weight": 22
-    },
-    {
-      "source": "hackforums",
-      "target": "keylogger",
-      "weight": 19
-    },
-    {
-      "source": "hackforums",
-      "target": "rat",
-      "weight": 32
-    },
-    {
-      "source": "hackforums",
-      "target": "tor",
-      "weight": 18
-    },
-    {
-      "source": "hackforums",
-      "target": "stealer",
-      "weight": 23
-    },
-    {
-      "source": "hackforums",
-      "target": "exploit",
-      "weight": 42
-    },
-    {
-      "source": "hackforums",
-      "target": "cve",
-      "weight": 14
-    },
-    {
-      "source": "hackforums",
-      "target": "vulnerability",
-      "weight": 12
-    },
-    {
-      "source": "hackforums",
-      "target": "credential",
-      "weight": 23
-    },
-    {
-      "source": "hackforums",
-      "target": "breach",
-      "weight": 6
-    },
-    {
-      "source": "hackforums",
-      "target": "dump",
-      "weight": 12
-    },
-    {
-      "source": "hackforums",
-      "target": "trojan",
-      "weight": 3
-    },
-    {
-      "source": "bitcoin",
-      "target": "raidforums",
-      "weight": 10
-    },
-    {
-      "source": "bitcoin",
-      "target": "exploit_in",
-      "weight": 14
-    },
-    {
-      "source": "monero",
-      "target": "raidforums",
-      "weight": 10
-    },
-    {
-      "source": "monero",
-      "target": "exploit_in",
-      "weight": 14
-    },
-    {
-      "source": "exploit",
-      "target": "exploit_in",
-      "weight": 36
-    },
-    {
-      "source": "exploit",
-      "target": "raidforums",
-      "weight": 44
-    },
-    {
-      "source": "vulnerability",
-      "target": "exploit_in",
-      "weight": 13
-    },
-    {
-      "source": "vulnerability",
-      "target": "raidforums",
-      "weight": 17
-    },
-    {
-      "source": "cve",
-      "target": "raidforums",
-      "weight": 9
-    },
-    {
-      "source": "cve",
-      "target": "exploit_in",
-      "weight": 9
-    },
-    {
-      "source": "malware",
-      "target": "exploit_in",
-      "weight": 13
-    },
-    {
-      "source": "malware",
-      "target": "raidforums",
-      "weight": 35
-    },
-    {
-      "source": "stealer",
-      "target": "raidforums",
-      "weight": 34
-    },
-    {
-      "source": "stealer",
-      "target": "exploit_in",
-      "weight": 17
-    },
-    {
-      "source": "botnet",
-      "target": "exploit_in",
-      "weight": 32
-    },
-    {
-      "source": "botnet",
-      "target": "raidforums",
-      "weight": 25
-    },
-    {
-      "source": "ddos",
-      "target": "exploit_in",
-      "weight": 26
-    },
-    {
-      "source": "ddos",
-      "target": "raidforums",
-      "weight": 31
-    },
-    {
-      "source": "exploit_in",
-      "target": "keylogger",
-      "weight": 24
-    },
-    {
-      "source": "exploit_in",
-      "target": "rat",
-      "weight": 26
-    },
-    {
-      "source": "exploit_in",
-      "target": "breach",
       "weight": 5
     },
     {
-      "source": "exploit_in",
-      "target": "credential",
-      "weight": 26
-    },
-    {
-      "source": "exploit_in",
-      "target": "dump",
+      "source": "ddos",
+      "target": "hackforums",
       "weight": 14
     },
     {
-      "source": "exploit_in",
-      "target": "tor",
-      "weight": 12
+      "source": "ddos",
+      "target": "raidforums",
+      "weight": 6
     },
     {
-      "source": "exploit_in",
-      "target": "trojan",
-      "weight": 10
+      "source": "ddos",
+      "target": "exploit_in",
+      "weight": 5
+    },
+    {
+      "source": "raidforums",
+      "target": "dump",
+      "weight": 28
+    },
+    {
+      "source": "raidforums",
+      "target": "malware",
+      "weight": 37
+    },
+    {
+      "source": "raidforums",
+      "target": "credential",
+      "weight": 28
+    },
+    {
+      "source": "raidforums",
+      "target": "leak",
+      "weight": 21
+    },
+    {
+      "source": "raidforums",
+      "target": "bitcoin",
+      "weight": 39
+    },
+    {
+      "source": "raidforums",
+      "target": "exploit",
+      "weight": 25
     },
     {
       "source": "raidforums",
       "target": "rat",
-      "weight": 42
-    },
-    {
-      "source": "raidforums",
-      "target": "breach",
       "weight": 12
     },
     {
       "source": "raidforums",
-      "target": "trojan",
-      "weight": 15
+      "target": "backdoor",
+      "weight": 12
     },
     {
       "source": "raidforums",
-      "target": "credential",
-      "weight": 29
+      "target": "ransomware",
+      "weight": 5
     },
     {
       "source": "raidforums",
-      "target": "dump",
-      "weight": 20
+      "target": "ransom",
+      "weight": 5
+    },
+    {
+      "source": "raidforums",
+      "target": "stealer",
+      "weight": 10
     },
     {
       "source": "raidforums",
       "target": "keylogger",
-      "weight": 24
+      "weight": 11
     },
     {
       "source": "raidforums",
-      "target": "tor",
+      "target": "botnet",
+      "weight": 11
+    },
+    {
+      "source": "credential_leak",
+      "target": "dump",
+      "weight": 152
+    },
+    {
+      "source": "credential_leak",
+      "target": "leak",
+      "weight": 119
+    },
+    {
+      "source": "credential_leak",
+      "target": "credential",
+      "weight": 127
+    },
+    {
+      "source": "credential_leak",
+      "target": "bitcoin",
+      "weight": 39
+    },
+    {
+      "source": "dump",
+      "target": "hackforums",
+      "weight": 31
+    },
+    {
+      "source": "dump",
+      "target": "exploit_in",
+      "weight": 37
+    },
+    {
+      "source": "hackforums",
+      "target": "bitcoin",
+      "weight": 36
+    },
+    {
+      "source": "hackforums",
+      "target": "ransomware",
+      "weight": 7
+    },
+    {
+      "source": "hackforums",
+      "target": "ransom",
+      "weight": 7
+    },
+    {
+      "source": "hackforums",
+      "target": "exploit",
       "weight": 21
+    },
+    {
+      "source": "hackforums",
+      "target": "leak",
+      "weight": 29
+    },
+    {
+      "source": "hackforums",
+      "target": "credential",
+      "weight": 23
+    },
+    {
+      "source": "hackforums",
+      "target": "keylogger",
+      "weight": 9
+    },
+    {
+      "source": "hackforums",
+      "target": "rat",
+      "weight": 11
+    },
+    {
+      "source": "hackforums",
+      "target": "malware",
+      "weight": 35
+    },
+    {
+      "source": "hackforums",
+      "target": "backdoor",
+      "weight": 16
+    },
+    {
+      "source": "hackforums",
+      "target": "stealer",
+      "weight": 11
+    },
+    {
+      "source": "hackforums",
+      "target": "botnet",
+      "weight": 6
+    },
+    {
+      "source": "malware_sale",
+      "target": "malware",
+      "weight": 164
+    },
+    {
+      "source": "malware_sale",
+      "target": "keylogger",
+      "weight": 43
+    },
+    {
+      "source": "malware_sale",
+      "target": "bitcoin",
+      "weight": 17
+    },
+    {
+      "source": "malware_sale",
+      "target": "rat",
+      "weight": 47
+    },
+    {
+      "source": "malware_sale",
+      "target": "backdoor",
+      "weight": 58
+    },
+    {
+      "source": "malware_sale",
+      "target": "stealer",
+      "weight": 44
+    },
+    {
+      "source": "malware",
+      "target": "exploit_in",
+      "weight": 35
+    },
+    {
+      "source": "exploit_in",
+      "target": "botnet",
+      "weight": 8
+    },
+    {
+      "source": "exploit_in",
+      "target": "keylogger",
+      "weight": 7
+    },
+    {
+      "source": "exploit_in",
+      "target": "bitcoin",
+      "weight": 35
+    },
+    {
+      "source": "exploit_in",
+      "target": "leak",
+      "weight": 28
+    },
+    {
+      "source": "exploit_in",
+      "target": "credential",
+      "weight": 32
+    },
+    {
+      "source": "exploit_in",
+      "target": "exploit",
+      "weight": 20
+    },
+    {
+      "source": "exploit_in",
+      "target": "rat",
+      "weight": 9
+    },
+    {
+      "source": "exploit_in",
+      "target": "stealer",
+      "weight": 10
+    },
+    {
+      "source": "exploit_in",
+      "target": "ransomware",
+      "weight": 15
+    },
+    {
+      "source": "exploit_in",
+      "target": "ransom",
+      "weight": 15
+    },
+    {
+      "source": "exploit_in",
+      "target": "backdoor",
+      "weight": 11
+    },
+    {
+      "source": "bitcoin",
+      "target": "ransomware",
+      "weight": 1
+    },
+    {
+      "source": "zero_day",
+      "target": "exploit",
+      "weight": 106
+    },
+    {
+      "source": "ransomware",
+      "target": "ransomware",
+      "weight": 40
+    },
+    {
+      "source": "ransomware",
+      "target": "ransom",
+      "weight": 40
     }
   ]
 }

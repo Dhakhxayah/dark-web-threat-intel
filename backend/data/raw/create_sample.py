@@ -7,76 +7,69 @@ random.seed(42)
 
 FORUMS = ['breachforums', 'hackforums', 'darknetlive', 'raidforums', 'exploit_in']
 
-POSTS = [
-    'Selling fresh credential dump from major bank 50k accounts email password combo',
-    'New ransomware as a service available contact for pricing bitcoin monero accepted',
-    'Zero day exploit for windows kernel privilege escalation unpatched cve 2024',
-    'Fullz available ssn dob credit card info 500 records bulk discount',
-    'Botnet for hire ddos service 100gbps guaranteed uptime',
-    'Malware builder with persistence keylogger and rat capabilities fud',
-    'Fresh leak from healthcare provider 200k patient records ssn included',
-    'Ransomware affiliate program 70 percent split join now limited slots',
-    'Stealer logs available redline meta raccoon fresh daily updated',
-    'Phishing kit for major bank clone looks identical bypass 2fa',
-    'Remote access trojan fud fully undetected tested on 10 antivirus',
-    'Database dump from ecommerce site 1 million records credit cards cvv',
-    'Zero day in popular cms unpatched selling to highest bidder escrow',
-    'Credential stuffing list netflix spotify amazon hbo fresh combolist',
-    'Exploit kit for sale browser based delivery silent install dropper',
-    'Selling access to corporate vpn fortune 500 company rdp',
-    'Ransomware source code for sale fully functional builder decryptor',
-    'Botnet 50k infected machines available for rent per hour',
-    'New stealer malware bypass windows defender fully tested crypted',
-    'Leak from government database 100k employee records pii',
-    'Selling corporate email access ceo credentials office365',
-    'Fresh combo list 10 million email password pairs checked',
-    'Crypter fud 2024 bypass all antivirus tools guaranteed',
-    'Ddos attack service cheap reliable fast layer7 layer4',
-    'Selling exploit for apache vulnerability remote code execution',
-    'Data breach notification upcoming major retailer payment data',
-    'Buying valid credit cards cvv fullz with high balance',
-    'Selling access to hospital network ransomware ready domain admin',
-    'Keylogger with screenshot capture ftp exfil silent install',
-    'Underground market new vendor trusted escrow accepts crypto',
-    'Spyware for android ios undetected remote monitoring tool',
-    'Vulnerabilities in banking app selling poc exploit code',
-    'Fresh logs from infostealer 500k lines parsed sorted',
-    'Mass email spam service 1 million per day inbox delivery',
-    'Hacked paypal accounts verified balance ready cashout',
-    'Selling rdp access to us company domain admin privileges',
-    'New cryptominer silent install bypass av fud tested',
-    'Account takeover service email phone verified bulk',
-    'Leaked source code from major software company github',
-    'Selling zero day for ios browser rce no interaction needed',
+TEMPLATES = [
+    "selling {quantity} {data_type} from {target} {price} {payment}",
+    "fresh {data_type} dump {quantity} records {target} {payment} accepted",
+    "new {attack_type} available {feature} contact for {price}",
+    "{attack_type} as a service {feature} {payment} only serious buyers",
+    "zero day in {software} {feature} unpatched selling {price}",
+    "exploit for {software} {feature} {price} escrow available",
+    "{quantity} {data_type} from {target} verified {payment}",
+    "buying {data_type} from {target} paying {price} in {payment}",
+    "leak from {target} {quantity} records includes {data_type}",
+    "{attack_type} source code {feature} {price} limited offer",
+    "access to {target} network {feature} {price} {payment}",
+    "fresh {attack_type} logs {quantity} lines {feature} daily",
+    "{data_type} stuffing list {target} {quantity} checked {payment}",
+    "malware builder {feature} bypass {software} {price}",
+    "phishing kit {target} clone {feature} {payment}",
 ]
 
-EXTRAS = [
-    'dm for info price negotiable bulk discount available',
-    'trusted vendor 500 deals completed escrow accepted',
-    'limited time offer first 10 buyers get discount',
-    'contact via telegram only no email serious buyers',
-    'sample available before purchase verified by mods',
-]
+QUANTITIES = ["50k", "100k", "200k", "500k", "1 million", "10k", "5k", "2 million"]
+DATA_TYPES = ["credential", "fullz", "ssn", "credit card", "combolist", "database", "logs", "account"]
+TARGETS = ["major bank", "healthcare provider", "fortune 500", "government", "ecommerce site", "university", "hospital", "retailer", "social media", "crypto exchange"]
+PRICES = ["negotiable", "500 usd", "1000 usd", "0.5 btc", "bulk discount", "pm for price", "auction"]
+PAYMENTS = ["bitcoin", "monero", "xmr", "crypto", "btc", "usdt"]
+ATTACK_TYPES = ["ransomware", "malware", "botnet", "stealer", "rat", "keylogger", "ddos", "spyware", "crypter", "backdoor"]
+FEATURES = ["fud fully undetected", "bypass av", "persistent", "silent install", "no logs", "tested", "guaranteed", "encrypted", "automated", "modular"]
+SOFTWARE = ["windows kernel", "apache server", "wordpress", "ios browser", "android", "office365", "vpn client", "router firmware", "database server", "web application"]
 
 rows = []
 start = datetime(2024, 1, 1)
+used_texts = set()
 
-for i in range(2000):
-    post = random.choice(POSTS)
-    extra = random.choice(EXTRAS) if random.random() > 0.5 else ''
-    text = post + (' ' + extra if extra else '')
+attempts = 0
+while len(rows) < 2000 and attempts < 10000:
+    attempts += 1
+    template = random.choice(TEMPLATES)
+    text = template.format(
+        quantity=random.choice(QUANTITIES),
+        data_type=random.choice(DATA_TYPES),
+        target=random.choice(TARGETS),
+        price=random.choice(PRICES),
+        payment=random.choice(PAYMENTS),
+        attack_type=random.choice(ATTACK_TYPES),
+        feature=random.choice(FEATURES),
+        software=random.choice(SOFTWARE),
+    )
+
+    if text in used_texts:
+        continue
+
+    used_texts.add(text)
+    timestamp = start + timedelta(
+        days=random.randint(0, 180),
+        hours=random.randint(0, 23),
+        minutes=random.randint(0, 59)
+    )
     rows.append({
-        'id': 'post_' + str(i + 1),
+        'id': 'post_' + str(len(rows) + 1),
         'text': text,
         'source_forum': random.choice(FORUMS),
-        'timestamp': (start + timedelta(
-            days=random.randint(0, 180),
-            hours=random.randint(0, 23),
-            minutes=random.randint(0, 59)
-        )).strftime('%Y-%m-%d %H:%M:%S'),
+        'timestamp': timestamp.strftime('%Y-%m-%d %H:%M:%S'),
     })
 
 df = pd.DataFrame(rows)
 os.makedirs('data/raw', exist_ok=True)
 df.to_csv('data/raw/darkdump.csv', index=False)
-print('Done! ' + str(len(df)) + ' rows, ' + str(df['text'].nunique()) + ' unique posts')
+print('Created ' + str(len(df)) + ' rows with ' + str(df['text'].nunique()) + ' unique posts')
